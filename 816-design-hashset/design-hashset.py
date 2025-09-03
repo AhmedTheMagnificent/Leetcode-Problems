@@ -19,9 +19,7 @@ class MyHashSet:
 
     def contains(self, key: int) -> bool:
         h = self.hash(key)
-        if key in self.buckets[h]:
-            return True
-        return False
+        return key in self.buckets[h]
 
 
 # Your MyHashSet object will be instantiated and called as such:
