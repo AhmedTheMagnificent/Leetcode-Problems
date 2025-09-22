@@ -5,12 +5,6 @@ class Solution:
             if num not in freqs:
                 freqs[num] = 0
             freqs[num] += 1
-        max_freq = -float("inf")
-        for num, freq in freqs.items():
-            if freq > max_freq:
-                max_freq = freq
-        count = 0
-        for num, freq in freqs.items():
-            if freq == max_freq:
-                count += freq
+        max_freq = max(freqs.values())
+        count = sum(freq for freq in freqs.values() if freq == max_freq)
         return count
