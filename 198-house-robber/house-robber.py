@@ -1,13 +1,14 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        n = len(nums)
         self.memo = {}
+        return self.dp(len(nums) - 1, nums)
 
-        def dp(i):
-            if i < 0:       return 0
-            if i == 0:      return nums[0]
-            if i in self.memo:   return self.memo[i]
-
-            self.memo[i] = max(dp(i - 1), nums[i] + dp(i - 2))
-            return self.memo[i]
-        return dp(n - 1)
+    def dp(self, i, nums):
+        if i < 0:   return 0
+        if i == 0:  return nums[0]
+        if i in self.memo:  return self.memo[i]
+        rob_current = nums[i] + self.dp(i - 2, nums)
+        skip_current = self.dp(i - 1, nums)
+        result = max(rob_current, skip_current)
+        self.memo[i] = result
+        return result
