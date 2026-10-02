@@ -1,9 +1,15 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        brackets = []
-        def backtrack(s, open, close):
-            if len(s) == 2 * n: brackets.append(s)
-            if open < n:        backtrack(s + "(", open + 1, close)
-            if close < open:    backtrack(s + ")", open, close + 1)
+    def generateParenthesis(self, n: int) -> list[str]:
+        paranth = []
+        def backtrack(current, opening, closing):
+            if len(current) == 2 * n:
+                paranth.append(current)
+                return
+            if opening < n:
+                backtrack(current + "(", opening + 1, closing)
+            if closing < opening:
+                backtrack(current + ")", opening, closing + 1)
+
         backtrack("", 0, 0)
-        return brackets
+        return paranth
+
